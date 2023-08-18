@@ -27,7 +27,10 @@ public class GameRepository {
     public List<Document> getAllGames(Integer limit, Integer offset) {
 
         Query query = Query.query(
-                Criteria.where(F_ID).exists(true));
+                Criteria.where(F_ID).exists(true))
+                .with(
+                        Sort.by(Sort.Direction.ASC, F_NAME)
+                );
 
         query
                 .skip(offset)
